@@ -84,12 +84,19 @@ WSGI_APPLICATION = 'toydev.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+my_database_url='postgres://toycoinuser:vmbiWQqAnifmxUZbCOmOkEJyAb5ZlwMo@dpg-coajbtkf7o1s73drf580-a.oregon-postgres.render.com/toydb'
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    # 'default': dj_database_url.config(default='postgres://USER:PASSWORD@HOST:PORT/NAME', conn_max_age=600)
+    'default': dj_database_url.config(default=f'{my_database_url}', conn_max_age=600)
 }
+
 
 # DATABASES = {
 #     # 'default': dj_database_url.config(default='postgres://USER:PASSWORD@HOST:PORT/NAME', conn_max_age=600)
