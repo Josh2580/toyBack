@@ -12,5 +12,3 @@ class ToyCoinViewSet(viewsets.ModelViewSet):
     queryset = ToyCoin.objects.all()
     serializer_class = ToyCoinSerializer
     lookup_field = 'user__telegram_id'
-    
-    # permission_classes = [permissions.AllowAny]
