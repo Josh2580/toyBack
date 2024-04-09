@@ -150,7 +150,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-CORS_ALLOWED_ORIGINS = ["http://localhost:5173","https://toycoin.netlify.app", "https://toyback.onrender.com/"]
+CORS_ALLOWED_ORIGINS = ["http://localhost:5173","https://toycoin.netlify.app", "https://toyback.onrender.com"]
 
 
 
