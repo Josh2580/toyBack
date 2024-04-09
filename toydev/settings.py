@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-p1wsvp+1saaeji8(^z0qvtcjf8=#rx$(-=^e$2qq7bc1demp@3
 DEBUG = True
 
 # ALLOWED_HOSTS = []
-ALLOWED_HOSTS = [ "toycoin.netlify.app", "127.0.0.1", "localhost"]
+ALLOWED_HOSTS = [ "toycoin.netlify.app", "127.0.0.1", "toyback.onrender.com","localhost"]
 
 
 
@@ -143,7 +143,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-CORS_ALLOWED_ORIGINS = ["http://localhost:5173","https://toycoin.netlify.app",]
+CORS_ALLOWED_ORIGINS = ["http://localhost:5173","https://toycoin.netlify.app", "https://toyback.onrender.com/"]
 
 
 
