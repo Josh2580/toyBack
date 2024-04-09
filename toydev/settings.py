@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-p1wsvp+1saaeji8(^z0qvtcjf8=#rx$(-=^e$2qq7bc1demp@3
 DEBUG = True
 
 # ALLOWED_HOSTS = []
-ALLOWED_HOSTS = [ "toycoin.netlify.app", "127.0.0.1",]
+ALLOWED_HOSTS = [ "toycoin.netlify.app", "127.0.0.1", "localhost"]
 
 
 

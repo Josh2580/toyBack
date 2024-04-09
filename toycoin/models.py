@@ -16,7 +16,24 @@ class ToyCoin(models.Model):
     first_click = models.BooleanField(default=True)
     date_joined = models.DateTimeField(default=timezone.now)
     mineral_extracted = models.CharField(max_length=50, null=True, blank=True)
-    extraction_date = models.DateTimeField(null=True, blank=True)
+    launch_date = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return f"{self.name}"
+    
+    def user_id(self):
+        return self.user.telegram_id
+    
+    def save(self, *args, **kwargs):
+        # Enforce specific month, day, hour, minute, and second
+        enforced_datetime = timezone.now().replace(
+            month=8,  # January
+            day=1,    # 1st of the month
+            hour=0,   # 12 AM
+            minute=0, # 00 minutes
+            second=0, # 00 seconds
+            microsecond=0  # Ensuring no microseconds
+        )
+        # Assign the enforced datetime to the field
+        self.launch_date = enforced_datetime
+        super().save(*args, **kwargs)
