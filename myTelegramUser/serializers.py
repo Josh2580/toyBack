@@ -5,6 +5,7 @@ from .models import TelegramUser
 class TelegramUserSerializer(serializers.ModelSerializer):
     # user_coin = serializers.PrimaryKeyRelatedField(many=False, read_only=True)
     user_coin = serializers.StringRelatedField(many=False, read_only=True)
+    referred_users = serializers.StringRelatedField(many=True, read_only=True)
 
     class Meta:
         model = TelegramUser
