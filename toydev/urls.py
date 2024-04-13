@@ -21,4 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('toycoin/', include("toycoin.urls")),
     path('telegram/', include("myTelegramUser.urls")),
+    path('task/', include("task.urls")),
 ]

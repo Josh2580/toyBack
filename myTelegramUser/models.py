@@ -10,6 +10,7 @@ class TelegramUser(models.Model):
     telegram_id = models.CharField(unique=True, max_length=200)
     language_code = models.CharField(max_length=255, default="en")
     currency = models.CharField(max_length=50, default="ADA")
+    referrer = models.ForeignKey('self', on_delete=models.SET_NULL, null=True, blank=True, related_name='referred_users')
     
 
     def __str__(self):

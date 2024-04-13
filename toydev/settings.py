@@ -44,7 +44,10 @@ INSTALLED_APPS = [
     "corsheaders",
 
     "toycoin",
+    "task",
     "myTelegramUser",
+    
+    'django_filters',
     "rest_framework",
 ]
 
