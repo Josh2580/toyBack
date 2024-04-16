@@ -5,8 +5,9 @@ from myTelegramUser.models import TelegramUser
 class Task(models.Model):
     user = models.ManyToManyField(TelegramUser, related_name='user_task', blank=True )
     task = models.CharField(default="The Users Task", max_length=1050)
-    time_clicked = models.DateTimeField(null=True, blank=True)
-    completed = models.BooleanField(default=False)
+    quantity = models.IntegerField(default=250)
+    url = models.URLField(max_length=1050)
+
 
     def __str__(self):
         return f"{self.user.username} Task {self.id} {self.completed}"
