@@ -7,10 +7,11 @@ class Task(models.Model):
     task = models.CharField(default="The Users Task", max_length=1050)
     quantity = models.IntegerField(default=250)
     url = models.URLField(max_length=1050)
+    completed = models.BooleanField(default=False)
 
 
     def __str__(self):
-        return f"{self.user.username} Task {self.id} {self.completed}"
+        return f"Task {self.id} {self.completed}"
     
     class Meta:
         ordering = ["id"]
