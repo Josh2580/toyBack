@@ -19,19 +19,22 @@ class CreateToyCoinSerializer(serializers.ModelSerializer):
         fields = ['id', 'name', 'quantity_mined', 'time_clicked', 'telegram_id']
         read_only_fields = ['id']  # Assuming 'id' is an auto-increment field
 
+
+
     def create(self, validated_data):
-        """
-        Overriding the create method is optional in this context because the actual saving logic
-        and setting of the 'user' based on 'telegram_id' is handled in the view's perform_create method.
-        If you need to perform additional manipulation on instance creation, you can do it here.
-        Remember to remove 'telegram_id' from validated_data since it's not a model field of ToyCoin.
-        """
-        validated_data.pop('telegram_id', None)  # Remove telegram_id as it's not a model field
+        telegram_id = validated_data.pop('telegram_id', None)  # Remove the telegram_id
+        # Remove user if it exists in validated_data to prevent the error
+        validated_data.pop('user', None)
 
-        # Instance creation logic
-        toycoin = super().create(validated_data)
+        # Retrieve the user based on telegram_id or raise an error if not found
+        user = TelegramUser.objects.filter(telegram_id=telegram_id).first()
+        if not user:
+            raise serializers.ValidationError("No TelegramUser found with this telegram_id.")
 
+        # Create the ToyCoin instance with the user
+        toycoin = ToyCoin.objects.create(user=user, **validated_data)
         return toycoin
+
 
     def validate_telegram_id(self, value):
         """
