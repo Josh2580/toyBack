@@ -1,11 +1,9 @@
 from django.db import models
 from django.utils import timezone
 from myTelegramUser.models import TelegramUser
-
-
+from django.db.models import Sum
 
 # Create your models here.
-
 
 
 class ToyCoin(models.Model):
@@ -18,11 +16,16 @@ class ToyCoin(models.Model):
     mineral_extracted = models.CharField(max_length=50, null=True, blank=True)
     launch_date = models.DateTimeField(default=timezone.now)
 
+
     def __str__(self):
         return f"{self.name}"
+
     
-    def user_id(self):
-        return self.user.telegram_id
+    @classmethod
+    def get_total_quantity_mined(cls):
+        result = cls.objects.aggregate(total_mined=Sum('quantity_mined'))
+        return result['total_mined'] or 0  # Returning 0 if None
+
     
     def save(self, *args, **kwargs):
         # Enforce specific month, day, hour, minute, and second

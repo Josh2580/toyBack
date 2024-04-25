@@ -3,7 +3,7 @@ from .models import ToyCoin
 
 
 class ToyCoinAdmin(admin.ModelAdmin):
-    list_display = ("user", "quantity_mined" )
+    list_display = ("user", "user_id", "quantity_mined",  "get_total_quantity_mined" )
 
 
 admin.site.register(ToyCoin, ToyCoinAdmin)
