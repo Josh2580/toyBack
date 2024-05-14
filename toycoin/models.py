@@ -26,6 +26,11 @@ class ToyCoin(models.Model):
         result = cls.objects.aggregate(total_mined=Sum('quantity_mined'))
         return result['total_mined'] or 0  # Returning 0 if None
 
+    @classmethod
+    def get_total_users(cls):
+        users = TelegramUser.objects.all().count()
+        return users or 0  # Returning 0 if None
+
     
     def save(self, *args, **kwargs):
         # Enforce specific month, day, hour, minute, and second
