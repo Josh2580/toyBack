@@ -5,6 +5,7 @@ from myTelegramUser.models import TelegramUser
 class ToyCoinSerializer(serializers.ModelSerializer):
     get_total_quantity_mined = serializers.CharField(read_only=True)
     get_total_users = serializers.IntegerField(read_only=True)
+    get_daily_users = serializers.IntegerField(read_only=True)
     class Meta:
         model = ToyCoin
         fields ="__all__"

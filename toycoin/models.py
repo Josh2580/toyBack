@@ -1,7 +1,9 @@
 from django.db import models
 from django.utils import timezone
+from datetime import timedelta
 from myTelegramUser.models import TelegramUser
 from django.db.models import Sum
+
 
 # Create your models here.
 
@@ -19,7 +21,6 @@ class ToyCoin(models.Model):
 
     def __str__(self):
         return f"{self.name}"
-
     
     @classmethod
     def get_total_quantity_mined(cls):
@@ -30,6 +31,11 @@ class ToyCoin(models.Model):
     def get_total_users(cls):
         users = TelegramUser.objects.all().count()
         return users or 0  # Returning 0 if None
+    
+    @classmethod
+    def get_daily_users(cls):
+        one_day_ago = timezone.now() - timedelta(days=1)
+        return TelegramUser.objects.filter(last_active__gte=one_day_ago).count()
 
     
     def save(self, *args, **kwargs):
