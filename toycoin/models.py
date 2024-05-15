@@ -22,6 +22,8 @@ class ToyCoin(models.Model):
     def __str__(self):
         return f"{self.name}"
     
+    
+    
     @classmethod
     def get_total_quantity_mined(cls):
         result = cls.objects.aggregate(total_mined=Sum('quantity_mined'))
@@ -36,6 +38,12 @@ class ToyCoin(models.Model):
     def get_daily_users(cls):
         one_day_ago = timezone.now() - timedelta(days=1)
         return TelegramUser.objects.filter(last_active__gte=one_day_ago).count()
+
+    @classmethod
+    def get_online_users(cls):
+        one_hour_ago = timezone.now() - timedelta(hours=6)
+        return TelegramUser.objects.filter(last_active__gte=one_hour_ago).count()
+
 
     
     def save(self, *args, **kwargs):

@@ -22,7 +22,7 @@ class TelegramUser(models.Model):
 
     @classmethod
     def get_online_users(cls):
-        one_hour_ago = timezone.now() - timedelta(hours=2)
+        one_hour_ago = timezone.now() - timedelta(hours=6)
         return cls.objects.filter(last_active__gte=one_hour_ago).count()
     
     @classmethod
