@@ -16,6 +16,7 @@ class Task(models.Model):
     quantity = models.IntegerField(default=250)
     url = models.CharField(max_length=1050, validators=[validate_twitter_url])
     completed = models.BooleanField(default=False)
+    group_id = models.CharField(max_length=255)
 
 
     def __str__(self):
