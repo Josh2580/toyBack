@@ -1,3 +1,4 @@
 tenv
 db.*
 .env
+bot_*

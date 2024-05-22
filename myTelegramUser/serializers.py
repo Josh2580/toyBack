@@ -1,6 +1,8 @@
 from rest_framework import serializers
 # from .models import TelegramUser, Order
 from .models import TelegramUser
+from task.models import Task
+from task.serializers import TaskSerializerSecond
 
 class TelegramUserSerializer(serializers.ModelSerializer):
     # user_coin = serializers.PrimaryKeyRelatedField(many=False, read_only=True)
@@ -8,6 +10,8 @@ class TelegramUserSerializer(serializers.ModelSerializer):
     referred_users = serializers.StringRelatedField(many=True, read_only=True)
     # referred_users = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
     referrer = serializers.PrimaryKeyRelatedField(queryset=TelegramUser.objects.all(), required=False, allow_null=True)
+    # user_task = serializers.PrimaryKeyRelatedField(many=True, read_only=True, required=False, allow_null=True)
+    user_task = TaskSerializerSecond(many=True, read_only=True, required=False, allow_null=True)
     # referrer = TelegramUserSerializer(read_only=True)
 
     class Meta:
