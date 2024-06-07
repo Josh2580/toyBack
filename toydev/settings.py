@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     "toycoin",
     "task",
     "myTelegramUser",
-    
+    'drf_material',
     'django_filters',
     "rest_framework",
 ]
@@ -68,7 +68,7 @@ ROOT_URLCONF = 'toydev.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / "templates"],
+        # 'DIRS': [BASE_DIR / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
