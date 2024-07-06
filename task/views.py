@@ -3,8 +3,8 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.response import Response
 from rest_framework.exceptions import NotFound
 
-from .models import Task
-from .serializers import TaskSerializer
+from .models import Task, AutoBot
+from .serializers import TaskSerializer, AutoBotSerializer
 from myTelegramUser.models import TelegramUser
 
 
@@ -35,3 +35,20 @@ class TaskViewSet(viewsets.ModelViewSet):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
+class AutoBotViewSet(viewsets.ModelViewSet):
+    queryset = AutoBot.objects.all()
+    serializer_class = AutoBotSerializer
+    lookup_field = 'user__telegram_id'
+
+    def perform_create(self, serializer):
+        telegram_id = self.request.data.get('telegram_id')
+
+        if not telegram_id:
+            return Response({"error": "Telegram ID is required"}, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            telegram_user = TelegramUser.objects.get(telegram_id=telegram_id)
+        except TelegramUser.DoesNotExist:
+            return Response({"error": "TelegramUser not found"}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer.save(user=telegram_user)

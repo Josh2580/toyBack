@@ -3,7 +3,7 @@ from django.utils import timezone
 from datetime import timedelta
 from myTelegramUser.models import TelegramUser
 from django.db.models import Sum
-
+ 
 
 # Create your models here.
 
@@ -18,11 +18,8 @@ class ToyCoin(models.Model):
     mineral_extracted = models.CharField(max_length=50, null=True, blank=True)
     launch_date = models.DateTimeField(default=timezone.now)
 
-
     def __str__(self):
         return f"{self.name}"
-    
-    
     
     @classmethod
     def get_total_quantity_mined(cls):
@@ -44,8 +41,6 @@ class ToyCoin(models.Model):
         one_hour_ago = timezone.now() - timedelta(hours=6)
         return TelegramUser.objects.filter(last_active__gte=one_hour_ago).count()
 
-
-    
     def save(self, *args, **kwargs):
         # Enforce specific month, day, hour, minute, and second
         enforced_datetime = timezone.now().replace(

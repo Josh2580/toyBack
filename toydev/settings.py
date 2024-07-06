@@ -101,11 +101,6 @@ DATABASES = {
 }
 
 
-# DATABASES = {
-#     # 'default': dj_database_url.config(default='postgres://USER:PASSWORD@HOST:PORT/NAME', conn_max_age=600)
-#     'default': dj_database_url.config(default='postgres://cardanomaze:sqjYAn3zYvtIZs426TyG8nUSd7SaifZ0@dpg-cnusgsfjbltc73c5m6d0-a.oregon-postgres.render.com/cardanomaze', conn_max_age=600)
-# }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators

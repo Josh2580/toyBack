@@ -2,6 +2,7 @@ from django.db import models
 # from django.core.validators import URLValidator
 from django.core.exceptions import ValidationError
 from myTelegramUser.models import TelegramUser
+from django.utils import timezone
 
 # Validate the url
 def validate_twitter_url(value):
@@ -24,3 +25,16 @@ class Task(models.Model):
     
     class Meta:
         ordering = ["id"]
+
+
+
+class AutoBot(models.Model):
+    user = models.OneToOneField(TelegramUser, related_name='user_bot', on_delete=models.CASCADE, blank=True, null=True )
+    activated = models.BooleanField(default=False)
+    completed = models.BooleanField(default=False)
+    time = models.DateTimeField(default=timezone.now)
+    duration = models.DurationField(null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.id} ID: {self.user} Free Auto-Bot is {self.activated}"
+

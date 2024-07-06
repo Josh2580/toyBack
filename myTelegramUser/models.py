@@ -14,11 +14,9 @@ class TelegramUser(models.Model):
     currency = models.CharField(max_length=50, default="ADA")
     referrer = models.ForeignKey('self', on_delete=models.SET_NULL, null=True, blank=True, related_name='referred_users')
     last_active = models.DateTimeField()
-    
 
     def __str__(self):
         return f"{self.telegram_id}"
-    
 
     @classmethod
     def get_online_users(cls):
